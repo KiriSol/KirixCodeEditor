@@ -2,23 +2,22 @@ from kivy.app import App
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
 
-from TextLine.textinputlinenumber import TextInputLineNumber
-from pygments.lexers.c_cpp import CppLexer
+import TextLine.textinputlinenumber
+
 
 class ExampleRoot(BoxLayout):
     lni = ObjectProperty(None)
     text = StringProperty("")
 
-    def append_lorem_ipsum(self, instance=None):
+    def append_lorem_ipsum(self):
         self.lni.text = ""
         self.lni.text_content.focus = True
 
-
-    def save(self, instance=None):
+    def save(self):
         with open("save.py", "w") as file:
             file.write(self.lni.text)
-        
-    def tab(self, instance=None):
+
+    def tab(self):
         self.lni.text_content.insert_text("\t")
         self.lni.text_content.focus = True
 
