@@ -1,0 +1,42 @@
+<TextInputLineNumber@BoxLayout>:
+    line_numbers: line_numbers
+    text_content: text_content
+
+    cursor: self.text_content.cursor
+    cursor_pos: self.text_content.cursor_pos
+    scroll_y: self.text_content.scroll_y
+    text: self.text_content.text
+
+    amount_lines: self.text_content.amount_lines
+    lines_flags: self.text_content.lines_flags
+
+    line_spacing: 3
+
+    on_focus: text_content.focus=True
+
+    selection: text_content.selection_text
+
+    LineNumbers:
+        id: line_numbers
+        line_spacing: root.line_spacing
+        cursor: 0, root.text_content.cursor[1]
+        scroll_y: root.text_content.scroll_y
+        lines_flags: root.text_content.lines_flags
+
+    CustomTextInput:
+        id: text_content
+        line_spacing: root.line_spacing
+        scroll_y: root.line_numbers.scroll_y
+        text: root.text
+        cursor: root.cursor
+        # lexer: root.lexer
+
+<CustomTextInput@CodeInput>:
+
+<LineNumbers@TextInput>:
+    background_color: '#ffffff'
+    disabled_foreground_color: '#090909'
+    readonly: True
+    size_hint_max_x: 60
+    text: '1'
+    disabled: True
