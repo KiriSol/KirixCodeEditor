@@ -1,25 +1,61 @@
 from kivy.app import App
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
+from kivy.lang.builder import Builder
 
-import TextLine.textinputlinenumber
+from TextLine.textinputlinenumber import TextInputLineNumber
+from pygments.lexers.c_cpp import CppLexer
+
+import os
 
 
-class ExampleRoot(BoxLayout):
+Builder.load_file("./kv/codeeditor.kv")
+Builder.load_file("./kv/textinputlinenumber.kv")
+
+try:
+    with open("path.txt", "r") as file:
+        file_path = file.read()
+except FileNotFoundError:
+    with open("path.txt", "w") as file:
+        file.write("")
+        exit()
+
+
+# class EditFileWorkspace(TextInputLineNumber):
+
+
+class CodeEditorRoot(BoxLayout):
     lni = ObjectProperty(None)
     text = StringProperty("")
 
-    def append_lorem_ipsum(self):
+    def delete(self, instance=None):
         self.lni.text = ""
         self.lni.text_content.focus = True
 
-    def save(self):
-        with open("save.py", "w") as file:
+    def save(self, instance=None):
+        with open(file_path, "w") as file:
             file.write(self.lni.text)
 
-    def tab(self):
+    def tab(self, instance=None):
         self.lni.text_content.insert_text("\t")
         self.lni.text_content.focus = True
+    
+    def open_file(self, path_file):
+        global file_path; file_path = path_file
+        with open(file_path, "r") as file, open("path.txt", "w") as path:
+            self.lni.text_content.text = file.read()
+            path.write(file_path)
+        print(file_path)
+
+    def run(self, instance=None):
+        self.save()
+        # os.system(f'g++ {file_path} -o {file_path.replace(".cpp", '')}')
+        # os.system(file_path.replace(".cpp", ''))
+        run_path = file_path.replace(("." + file_path.split(".")[-1]), "")
+        os.system(f"g++ {file_path} -o {run_path}")
+        os.system('start cmd /k ' + run_path)
+        # print(f"g++ {file_path} -o {run_path}")
+        # print(f"{run_path}")
 
 
 class CodeEditorApp(App):
@@ -28,18 +64,23 @@ class CodeEditorApp(App):
         res = BoxLayout()
 
         # res.add_widget(BoxLayout(orientation="vertical", size_hint=(0.1, 1)))
-        root = ExampleRoot()
-        # root.lni.
+        root = CodeEditorRoot()
+        root.lni.text_content.lexer = CppLexer()
+        root.path_file.text = file_path
         try:
-            with open("save.py", "r") as file:
+            with open(file_path, "r") as file:
                 root.lni.text = file.read()
         except FileNotFoundError:
-            with open("save.py", "w") as file:
-                file.write("print('Hello World!')")
-                # for i in range(1_000):
-                #     file.write("\n")
+            with open(file_path, "w") as file:
+                file.write('''
+#include <iostream>
 
-        with open("save.py", "r") as file:
+int main() {
+    std::cout << "Hello, World!" << std::endl;
+    return 0;
+}''')
+
+        with open(file_path, "r") as file:
             root.lni.text = file.read()
         res.add_widget(root)
         return res

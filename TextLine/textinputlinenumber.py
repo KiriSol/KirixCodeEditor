@@ -10,6 +10,9 @@ from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.codeinput import CodeInput
 from kivy.uix.textinput import TextInput
+
+# from kivy.lang.builder import Builder
+
 from pygments.lexers.c_cpp import CppLexer
 
 
@@ -38,6 +41,7 @@ class CustomTextInput(CodeInput):
     amount_lines = NumericProperty(1)
     lines_flags = ListProperty([])
     cursor_line = NumericProperty(1)
+    lexer = CppLexer()
 
     LINE_FLAG_WORDWRAP = 0
     LINE_FLAG_NEWLINE = 1
