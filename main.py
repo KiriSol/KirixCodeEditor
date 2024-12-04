@@ -1,29 +1,42 @@
+from io import TextIOWrapper
+import os
+import json
+
+from pygments.lexers.c_cpp import CppLexer
+
 from kivy.app import App
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang.builder import Builder
 
 from TextLine.textinputlinenumber import TextInputLineNumber
-from pygments.lexers.c_cpp import CppLexer
 
-import os
+settings= json.load(open("./.config/settings.json", "r"))
+print(settings)
 
 
 Builder.load_file("./kv/codeeditor.kv")
 Builder.load_file("./kv/textinputlinenumber.kv")
 
-try:
-    with open("path.txt", "r") as file:
-        file_path = file.read()
-except FileNotFoundError:
-    with open("path.txt", "w") as file:
-        file.write("")
-        exit()
+os.makedirs("./.config", exist_ok=True)
+
+settings = json.load(open("./.config/settings.json", "r"))
+file_path = settings["path_file"]
 
 
-# class EditFileWorkspace(TextInputLineNumber):
+class EditFile:
+    def __init__(self, path):
+        
+        self.path = path
+        self.file: TextIOWrapper
 
+        self.open_file(path)
 
+    def open_file(cls, path):
+        pass
+    # TODO: methods
+
+1
 class CodeEditorRoot(BoxLayout):
     lni = ObjectProperty(None)
     text = StringProperty("")
@@ -39,7 +52,7 @@ class CodeEditorRoot(BoxLayout):
     def tab(self, instance=None):
         self.lni.text_content.insert_text("\t")
         self.lni.text_content.focus = True
-    
+
     def open_file(self, path_file):
         global file_path; file_path = path_file
         with open(file_path, "r") as file, open("path.txt", "w") as path:
