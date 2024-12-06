@@ -12,9 +12,9 @@
 
     line_spacing: 3
 
-    on_focus: text_content.focus=True
+    # on_focus: self.text_content.focus=True
 
-    selection: text_content.selection_text
+    selection: self.text_content.selection_text
 
     LineNumbers:
         id: line_numbers
@@ -31,14 +31,24 @@
         cursor: root.cursor
         # lexer: root.lexer
 
-<CustomTextInput@CodeInput>:
-    background_color: '#313338'
-    text_color: '#C9C0DB'
+
+<CustomCodeInput@CodeInput>:
+    ScrollView:
+        id: scroll_panel
+        
+        CustomCodeInput:
+
+    # background_color: '#313338'
+    # text_color: '#C9C0DB'
+
 
 <LineNumbers@TextInput>:
-    background_color: '#313338'
-    disabled_foreground_color: '#C9C0DB'
+    # background_color: '#313338'
+    # disabled_foreground_color: '#C9C0DB'
     readonly: True
     size_hint_max_x: 60
     text: '1'
     disabled: True
+
+
+# <CodeInputLineNumber@TextInputLineNumber>:

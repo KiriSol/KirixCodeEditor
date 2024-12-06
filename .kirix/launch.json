@@ -1,0 +1,22 @@
+{
+	".py": {
+		"command": "python",
+		"args": ["${file}"]
+	},
+	".c": {
+		"command": "gcc",
+		"args": ["${file}", "-o", "${fileDirname}\\${fileBasenameNoExtension}.exe"]
+	},
+	".cpp": {
+		"command": "g++",
+		"args": ["${file}", "-o", "${fileDirname}\\${fileBasenameNoExtension}.exe"]
+	},
+	".js": {
+		"command": "node",
+		"args": ["${file}"]
+	},
+	".html": {
+		"command": "start",
+        "args": ["${file}"]
+	}
+}
