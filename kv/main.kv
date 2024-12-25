@@ -1,0 +1,41 @@
+# :import kv.codeinputfile
+
+<CodeEditorRoot@BoxLayout>:
+    work_code: work_code
+    # path_file: path_file
+
+    orientation: 'vertical'
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        id: workspace
+
+        BoxLayout:
+            id: open_panel
+            size_hint: 1, 0.1
+
+            TextInput:
+                id: input_path
+                size_hint: 0.8, 1
+                multiline: False
+                size_hint: 
+            Button:
+                text: "Open"
+                size_hint: .2, 1
+                on_release: work_code.open_file(input_path.text)
+
+        CodeInputFile:
+            id: work_code
+            size_hint: 1, 0.85
+
+        BoxLayout:
+            id: tools
+            size_hint: 1, 0.05
+            Button:
+                text: "Save"
+                on_release: work_code.save_file()
+            
+            Button:
+                text: "Run"
+                on_release: work_code.run_file()

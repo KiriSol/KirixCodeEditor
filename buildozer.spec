@@ -1,10 +1,10 @@
 [app]
 
 # (str) Title of your application
-title = CodeEditor
+title = KirixCode
 
 # (str) Package name
-package.name = codeeditor
+package.name = kirixcode
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.kirapp

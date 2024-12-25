@@ -1,0 +1,12 @@
+.buildozer/
+.idea/
+.venv/
+.lvenv/
+.vscode/
+*.exe
+*.[oa]
+bin/
+__pycache__/
+Runs/
+Tests/
+Test/

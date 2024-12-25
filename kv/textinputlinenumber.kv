@@ -1,7 +1,8 @@
-<TextInputLineNumber@BoxLayout>:
+<CodeInputLineNumber@BoxLayout>:
     line_numbers: line_numbers
     text_content: text_content
 
+    lexer: text_content.lexer
     cursor: self.text_content.cursor
     cursor_pos: self.text_content.cursor_pos
     scroll_y: self.text_content.scroll_y
@@ -23,7 +24,7 @@
         scroll_y: root.text_content.scroll_y
         lines_flags: root.text_content.lines_flags
 
-    CustomTextInput:
+    CustomCodeInput:
         id: text_content
         line_spacing: root.line_spacing
         scroll_y: root.line_numbers.scroll_y
@@ -33,10 +34,12 @@
 
 
 <CustomCodeInput@CodeInput>:
-    ScrollView:
-        id: scroll_panel
-        
-        CustomCodeInput:
+    # ScrollView:
+    #     id: scroll_panel
+
+    #     CustomCodeInput:
+    #         size_hint: 1, None
+    #         height: max(self.minimum_height, scroll_panel.height)
 
     # background_color: '#313338'
     # text_color: '#C9C0DB'
@@ -49,6 +52,3 @@
     size_hint_max_x: 60
     text: '1'
     disabled: True
-
-
-# <CodeInputLineNumber@TextInputLineNumber>:

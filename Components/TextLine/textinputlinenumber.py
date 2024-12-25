@@ -9,11 +9,6 @@ from kivy.properties import (
 from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.codeinput import CodeInput
-from kivy.uix.textinput import TextInput
-
-# from kivy.lang.builder import Builder
-
-# from pygments.lexers.c_cpp import CppLexer
 
 
 class LineNumbers(CodeInput):
@@ -26,7 +21,7 @@ class LineNumbers(CodeInput):
         amount_lines = 0
         text = "1"
         for flag in self.lines_flags:
-            if flag == CustomTextInput.LINE_FLAG_NEWLINE:
+            if flag == CustomCodeInput.LINE_FLAG_NEWLINE:
                 amount_lines += 1
                 text += f"{amount_lines+1}\n"
             else:
@@ -37,7 +32,7 @@ class LineNumbers(CodeInput):
         self._update_graphics()
 
 
-class CustomTextInput(CodeInput):
+class CustomCodeInput(CodeInput):
     amount_lines = NumericProperty(1)
     lines_flags = ListProperty([])
     cursor_line = NumericProperty(1)
@@ -45,8 +40,8 @@ class CustomTextInput(CodeInput):
 
     LINE_FLAG_WORDWRAP = 0
     LINE_FLAG_NEWLINE = 1
-    LINE_FLAG_WORDBREAK = 2
-    
+    LINE_FLAG_WORD_BREAK = 2
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.cursor_line = 1
@@ -71,7 +66,6 @@ class CustomTextInput(CodeInput):
             if self.lines_flags[flag_idx] == self.LINE_FLAG_NEWLINE:
                 self.cursor_line += 1
 
-            # print(self.cursor, flag_idx, "new line" if self.lines_flags[flag_idx] == self.LINE_FLAG_NEWLINE else "no new line")
             flag_idx += 1
         # TODO: sometimes we get 1 line before the intended line
         if not self.lines_flags[flag_idx] == self.LINE_FLAG_NEWLINE:
@@ -79,7 +73,7 @@ class CustomTextInput(CodeInput):
         self.cursor = (0, flag_idx)
 
 
-class TextInputLineNumber(FocusBehavior, BoxLayout):
+class CodeInputLineNumber(FocusBehavior, BoxLayout):
     text_content = ObjectProperty(None)
     line_numbers = ObjectProperty(None)
 
@@ -87,15 +81,13 @@ class TextInputLineNumber(FocusBehavior, BoxLayout):
     lines_flags = ListProperty([])
     text = StringProperty("")
     scroll_y = NumericProperty(0)
-    
 
     selection = StringProperty("")
 
     cursor_line = NumericProperty(1)
-    
+
     # def __init__(self, **kwargs):
     #     self.text_content.__init__(**kwargs)
-
 
     def update_graphics(self):
         self.line_numbers._update_graphics()
@@ -121,7 +113,3 @@ class TextInputLineNumber(FocusBehavior, BoxLayout):
 
     def get_cursor_from_index(self, text_index):
         return self.text_content.get_cursor_from_index(text_index)
-
-
-# class CodeInputLineNumber(TextInputLineNumber):
-#     pass

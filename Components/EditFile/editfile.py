@@ -1,91 +1,135 @@
-'''
+"""
+Это модуль для работы с файи
+"""
 
+import os
+import io
 
-'''
+def create_directory(dir_path: str):
+    try:
+        os.makedirs(dir_path, exist_ok=True)
+        return 0
+    except OSError:
+        return 1
 
 
 class EditFile:
-    def __init__(self, path: str = "__welcome__", lexer: object = None):
-        self.path = path
-        self.type = path.split(".")[-1]
-        if lexer is None:
+    _path: str = None
+    _type: str = None
+    _file: io.TextIOWrapper = None
+    lexer = None
+    text: str = ""
+
+    def open_file(self, path: str = "") -> None:
+        self.text = ""
+
+        if path == "" or path is None:  # Проверяем наличие пути
+            raise NameError("Путь не указан")
+        
+        try:  # Пытаемся получить абсолютный путь
+            self._path = os.path.abspath(path)
+            self._type = self._path.split(".")[-1]
             self.set_lexer()
+        except:
+            raise NameError("Путь некорректен")
+
+        try:  # Пытаемся открыть файл
+            with open(self._path, "r", encoding="utf-8") as file:
+                self.text = file.read()
+        except FileNotFoundError as err:  # Если файл не найден, пытаемся создать
+            try:
+                create_directory(os.path.dirname(self._path))  # Создаем директорию
+                open(self._path, "w", encoding="utf-8").close()  # Создаем пустой файл
+            except:
+                raise NameError("Путь некорректен")
+
+    def save_file(self) -> None:
+        if self._path is None:  # Проверяем наличие пути
+            # raise NameError("Path is invalid (None)")
+            return
+        elif self._path == "":
+            return
+
+        try:  # Пытаемся сохранить
+            with open(self._path, "w", encoding="utf-8") as file:
+                file.write(self.text)
+        except FileNotFoundError as err:  # Если файл не найден, пытаемся создать
+
+            if "directory" in err.strerror:
+                if create_directory(os.path.dirname(self._path)):  # Создаем директорию
+                    self._path = "./" + self._path
+                with open(self._path, "w", encoding="utf-8") as file:  # Создаем файл
+                    file.write(self.text)
+
+            else:  # Если не удалось создать файл
+                raise NameError("Path is invalid (None)")
+
+    def run_file(self) -> None:
+        if self._path == "":  # Проверяем наличие пути
+            return
+        
+        if self._type == "py":
+            os.system(f"python {self._path}")
+        elif self._type == "c":
+            os.system(f"gcc {self._path} -o {self._path.split('.')[0]}")
+            os.system(f"./{self._path.split('.')[0]}")
+        elif self._type == "cpp":
+            os.system(f"g++ {self._path} -o {self._path.split('.')[0]}")
+            os.system(f"{self._path.split('.')[0]}")
+        elif self._type == "js":
+            os.system(f"node {self._path}")
+        elif self._type == "html":
+            os.system(f"start {self._path}")
         else:
-            self.lexer = lexer
+            self.save_file()
 
-        self.file = None
-
-    def open_file(self, path: str = None):
-        if path is None:
-            pass
-        else:
-            self.__init__(path)
-
-        try:
-            self.file = open(self.path, "r", encoding="utf-8")
-        except FileNotFoundError as err:
-            open(self.path, "w", encoding="utf-8").close()
-            self.file = open(self.path, "r", encoding="utf-8")
-
-        self.text = self.file.read()
-        self.file.close()
-
-    def save_file(self):
-        with open(self.path, "w", encoding="utf-8") as file:
-            file.write(self.text)
-
-    def set_lexer(self):
-        if self.type == "py":
+    def set_lexer(self) -> None:
+        if self._type == "py":
             from pygments.lexers.python import PythonLexer
 
             self.lexer = PythonLexer()
-        elif self.type == "c":
+        elif self._type == "c":
             from pygments.lexers.c_cpp import CLexer
 
             self.lexer = CLexer()
-        elif self.type == "cpp":
+        elif self._type == "cpp":
             from pygments.lexers.c_cpp import CppLexer
 
             self.lexer = CppLexer()
-        elif self.type == "js":
+        elif self._type == "js":
             from pygments.lexers.javascript import JavascriptLexer
 
             self.lexer = JavascriptLexer()
-        elif self.type == "html":
+        elif self._type == "html":
             from pygments.lexers.html import HtmlLexer
 
             self.lexer = HtmlLexer()
-        elif self.type == "css":
+        elif self._type == "css":
             from pygments.lexers.css import CssLexer
 
             self.lexer = CssLexer()
-        elif self.type == "json":
-            from pygments.lexers.javascript import JsonLexer
+        elif self._type == "json":
+            from pygments.lexers.jsonnet import JsonnetLexer
 
-            self.lexer = JsonLexer()
-        elif self.type == "txt":
-            from pygments.lexers.text import TextLexer
-
-            self.lexer = TextLexer()
-        elif self.type == "md":
+            self.lexer = JsonnetLexer()
+        elif self._type == "md":
             from pygments.lexers.markup import MarkdownLexer
 
             self.lexer = MarkdownLexer()
-        elif self.type == "kv":
+        elif self._type == "kv":
             from kivy.extras.highlight import KivyLexer
 
             self.lexer = KivyLexer()
         else:
-            self.lexer = None
+            from pygments.lexers.text import IniLexer
 
-    def get_lexer(self):
-        return self.lexer
+            self.lexer = IniLexer()
 
-    def get_path(self):
-        return self.path
+    def get_path(self) -> None | str:
+        return self._path
 
-    def __repr__(self):
-        return f"EditFile(path={self.path}, lexer={self.lexer})"
+    def __repr__(self) -> str:
+        return f"EditFile(path={self._path}, lexer={self._lexer})"
 
-    def __str__(self):
-        return f'<{type(self).__name__}> "{self.path}"'
+    def __str__(self) -> str:
+        return f'<{type(self).__name__}> "{self._path}"'

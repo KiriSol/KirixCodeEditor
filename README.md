@@ -1,1 +1,1 @@
-# MyKivyApp
+# KirixCodeEditor

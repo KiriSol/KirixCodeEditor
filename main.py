@@ -9,33 +9,34 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.lang.builder import Builder
 
 # My Modules
-from Components.TextLine.textinputlinenumber import TextInputLineNumber
+from Components.TextLine.textinputlinenumber import CodeInputLineNumber
+from Components.EditFile.editfile import EditFile
+from Components.CodeInputFile.codeinputfile import CodeInputFile
 
 # KV
-Builder.load_file("./kv/codeeditor.kv")
 Builder.load_file("./kv/textinputlinenumber.kv")
+Builder.load_file("./kv/codeinputfile.kv")
 
-os.makedirs("./.kirix", exist_ok=True)
+Builder.load_file("./kv/main.kv")
+
+# os.makedirs("./.kirix", exist_ok=True)
 
 # Open Settings
 settings = json.load(open("./.kirix/settings.json", "r"))
-file_path = settings["path_file"]
-
-
 
 
 class CodeEditorRoot(BoxLayout):
-    pass
+    work_code = ObjectProperty(None)
 
 
-class CodeEditorApp(App):
+class KirixApp(App):
     def build(self):
         return CodeEditorRoot()
 
 
 if __name__ == "__main__":
-
-    CodeEditorApp().run()
+    KirixApp().run()
 
     # Save Settings
-    json.dump(settings, open("./.kirix/settings.json", "w"))
+    json.dump(settings, open("./.kirix/settings.json", "w"), indent=4)
+

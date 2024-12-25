@@ -1,1 +1,33 @@
-{"name": "Code Editor", "path_file": "__welcome__", "window": {"width": 1000, "height": 600}, "Themes": {"Dark": {"background": "#313338", "foreground": "#C9C0DB"}, "Light": {"background": "#C9C0DB", "foreground": "#313338"}}, "theme": "Dark", "font": {"name": "Consolas", "size": 14}, "editor": {"tab_size": 4, "indent_size": 4}, "keybindings": {"copy": "Ctrl+C", "paste": "Ctrl+V", "save": "Ctrl+S", "run": "Ctrl+Enter"}}
+{
+    "name": "Code Editor",
+    "path_file": "__welcome__",
+    "window": {
+        "width": 1000,
+        "height": 600
+    },
+    "Themes": {
+        "Dark": {
+            "background": "#313338",
+            "foreground": "#C9C0DB"
+        },
+        "Light": {
+            "background": "#C9C0DB",
+            "foreground": "#313338"
+        }
+    },
+    "theme": "Dark",
+    "font": {
+        "name": "Consolas",
+        "size": 14
+    },
+    "editor": {
+        "tab_size": 4,
+        "indent_size": 4
+    },
+    "keybindings": {
+        "copy": "Ctrl+C",
+        "paste": "Ctrl+V",
+        "save": "Ctrl+S",
+        "run": "Ctrl+Enter"
+    }
+}
