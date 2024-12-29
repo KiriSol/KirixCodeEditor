@@ -1,6 +1,6 @@
 # KirixCodeEditor
 
-!!! some Это практическая часть школьного проекта
+Это практическая часть школьного проекта
 
 ##### Редактор кода написан на **[Python](https://www.python.org/) [Kivy](https://www.python.org/)**
 
