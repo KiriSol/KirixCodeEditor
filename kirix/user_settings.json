@@ -1,0 +1,23 @@
+{
+	"$schema": "./user_settings_schema.json",
+
+	"user_aliases": {
+		"WORK": "C:\\Users\\rbhbk\\Documents\\"
+	},
+
+	"search_paths": [],
+
+	"UI": {
+		"Editor": {
+			"font_size": 16
+		},
+		"PushMessage": {},
+		"PathInput": {},
+		"Buttons": {}
+	},
+
+	"Themes": {
+		"Light": {}
+	},
+	"theme": "Light"
+}

@@ -1,0 +1,95 @@
+# Виджет CodeInput с нумерацией строк
+
+# Также в этом файле создаются ссылки друг на друга,
+#   чтобы при изменении одной изменялись и другие
+
+
+<CodeInputLineNumber@BoxLayout>:
+    line_numbers: line_numbers
+    text_content: text_content
+
+    # General properties
+    scroll_y: self.text_content.scroll_y
+    amount_lines: self.text_content.amount_lines
+    lines_flags: self.text_content.lines_flags
+
+    lexer: self.text_content.lexer
+
+    readonly: self.text_content.readonly
+
+    text: self.text_content.text
+    selection: self.text_content.selection_text
+
+    cursor: self.text_content.cursor
+    cursor_index: self.text_content.cursor_index
+
+    # For configuration
+    line_spacing: self.text_content.line_spacing
+    font_name: self.text_content.font_name
+    font_size: self.text_content.font_size
+
+    tab_size: self.text_content.tab_width
+
+    # For theme
+    background_color: self.text_content.background_color
+    foreground_color: self.text_content.foreground_color
+    cursor_color: self.text_content.cursor_color
+    selection_color: self.text_content.selection_color
+
+
+    LineNumbers:
+        id: line_numbers
+
+        # General properties
+        scroll_y: root.text_content.scroll_y
+        lines_flags: root.text_content.lines_flags
+        cursor: root.cursor
+
+        # For configuration
+        line_spacing: root.line_spacing
+        font_name: root.font_name
+        font_size: root.font_size
+
+        # For theme
+        background_color: root.background_color
+        foreground_color: root.foreground_color
+
+
+    CustomCodeInput:
+        id: text_content
+
+        # General properties
+        scroll_y: root.line_numbers.scroll_y
+        cursor: root.cursor
+        cursor_index: root.cursor_index
+
+        text: root.text
+        selection: root.selection
+
+        readonly: root.readonly
+
+        lexer: root.lexer
+
+        # For configuration
+        font_name: root.font_name
+        line_spacing: root.line_spacing
+        font_size: root.font_size
+        tab_width: root.tab_size
+
+        # For theme
+        background_color: root.background_color
+        foreground_color: root.foreground_color
+        cursor_color: root.cursor_color
+        selection_color: root.selection_color
+
+
+
+<CustomCodeInput@CodeInput>:
+    auto_indent: True
+
+
+<LineNumbers@TextInput>:
+    readonly: True
+    disabled: True
+    size_hint_max_x: 60
+    text: '1'

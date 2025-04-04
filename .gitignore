@@ -1,0 +1,18 @@
+# Build files
+**/.buildozer/
+**/bin/
+**/build/
+**/dist/
+
+# Cache
+**/__pycache__/
+**/.ruff_cache
+
+# Virtual environment
+**/.venv/
+
+# Configs
+**/.idea/
+
+# Tests
+**/tests/

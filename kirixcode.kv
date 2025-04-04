@@ -1,0 +1,54 @@
+#: include modules/uix/code_input_widget/code_input_line_number.kv
+#: include modules/uix/code_input_to_file/code_input_file.kv
+#: include modules/uix/push_message/push_message.kv
+#: include modules/uix/custom_button/custom_button.kv
+#: include modules/uix/path_input/path_input.kv
+#: include modules/uix/tool_bar/tool_bar.kv
+
+
+#: import Factory kivy.factory.Factory
+#: import Settings modules.core.get_settings.get_settings.Settings
+
+
+<KirixCodeRoot@BoxLayout>:
+    code_input: code_input
+    path_input: path_input
+
+    orientation: "vertical"
+
+    ToolBar:
+        orientation: "horizontal"
+        size_hint: 1, 0.1
+        CustomButton:
+            size_hint: 0.1, 1
+            text: "Tab"
+            on_release:
+                app.root.code_input.insert_text("\t")
+                app.root.code_input.text_content.focus = True
+        
+        PathInput:
+            id: path_input
+            size_hint: 0.8, 1
+
+    CodeInputToFile:
+        id: code_input
+    
+    ToolBar:
+        size_hint: 1, 0.1
+        orientation: "horizontal"
+
+        CustomButton:
+            text: " Reload\nsettings"
+            on_release: app.root.reload_settings()
+
+        CustomButton:
+            text: "Delete"
+            on_release: app.root.delete()
+
+        CustomButton:
+            text: "Run"
+            on_release: app.root.run()
+        
+        CustomButton:
+            text: "Save"
+            on_release: app.root.save()

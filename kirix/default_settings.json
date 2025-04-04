@@ -1,0 +1,97 @@
+{
+	"$schema": "./default_settings_schema.json",
+
+	"RESERVED_PATHS": {
+		"HOME": {
+			"path": "C:\\Users\\rbhbk\\Dev\\KivyApp\\KirixCode",
+			"readonly": false
+		},
+		"settings": {
+			"path": "$HOME/kirix/user_settings.json",
+			"readonly": false
+		},
+		"default_settings": {
+			"path": "$HOME/kirix/default_settings.json",
+			"readonly": true
+		},
+		"help": {
+			"path": "$HOME/kirix/help.md",
+			"readonly": true
+		},
+		"welcome": {
+			"path": "$HOME/kirix/welcome.md",
+			"readonly": true
+		}
+	},
+
+	"plugins": [],
+
+	"search_paths": [
+		"/storage/emulated/Fonts",
+		"/data/data/org.kirapp.kirixcode/files/resources/fonts",
+		"C:\\Windows\\Fonts",
+		"C:\\Users\\rbhbk\\AppData\\Local\\Microsoft\\Windows\\Fonts"
+	],
+
+	"report_successful_download": true,
+
+	"UI": {
+		"Editor": {
+			"font": "JetBrainsMonoNerdFontMono-Regular.ttf",
+			"font_size": 18,
+			"line_spacing": 0,
+			"tab_size": 4
+		},
+		"PushMessage": {
+			"font": "JetBrainsMonoNerdFontMono-Regular.ttf",
+			"font_size": 15,
+			"title_font_size": 13,
+			"line_spacing": 1
+		},
+		"PathInput": {
+			"font": "JetBrainsMonoNerdFontMono-Regular.ttf",
+			"font_size": 18
+		},
+		"Buttons": {
+			"font": "JetBrainsMonoNerdFontMono-Regular.ttf",
+			"font_size": 16
+		}
+	},
+
+	"Themes": {
+		"Default": {
+			"background": "#C9C0DB",
+			"foreground": "#313338",
+			"cursor": "#B84B10",
+			"selection": "#2EA6D37F",
+
+			"Buttons": {
+				"background": "#FFC2E6FF",
+				"text_color": "#FFFFFFFF",
+				"background_normal": "atlas://data/images/defaulttheme/button",
+				"background_down": "atlas://data/images/defaulttheme/button_pressed"
+			},
+			"PushMessage": {
+				"error": {
+					"title": "#FC4E41",
+					"background": "#FC4E41",
+					"separator": "#FC4E41",
+					"foreground": "#C9C0DB"
+				},
+				"warning": {
+					"title": "#E4CF6A",
+					"background": "#E4CF6A",
+					"separator": "#E4CF6A",
+					"foreground": "#C9C0DB"
+				},
+				"info": {
+					"title": "#C9C0DB",
+					"background": "#5DCFFF",
+					"separator": "#5DCFFF",
+					"foreground": "#C9C0DB"
+				}
+			}
+		}
+	},
+	"theme": "Default"
+}

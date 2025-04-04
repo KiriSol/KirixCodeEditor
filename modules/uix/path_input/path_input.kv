@@ -1,0 +1,36 @@
+#: include modules/uix/custom_button/custom_button.kv
+
+
+<PathInput@BoxLayout>:
+    text_input: text_input
+    btn_open: btn_open
+
+    orientation: "horizontal"
+
+    font: self.text_input.font_name
+    font_size: self.text_input.font_size
+
+    foreground_color: self.text_input.foreground_color
+    background_color: self.text_input.background_color
+
+    CustomTextInput:
+        id: text_input
+
+        font_name: root.font
+        font_size: root.font_size
+        background_color: root.background_color
+        foreground_color: root.foreground_color
+
+    CustomButton:
+        id: btn_open
+
+        text: "Open"
+        size_hint: 0.15, 1
+        on_release: app.root.open(root.text_input.text)
+
+
+<CustomTextInput@TextInput>:
+    multiline: False
+    text: "$welcome"
+    halign: "center"
+    valign: "bottom"

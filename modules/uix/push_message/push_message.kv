@@ -1,0 +1,53 @@
+<PushMessage@Popup>:
+    size_hint: 0.98, 0.35
+    pos_hint: {'center_x': 0.5, 'top': 0.99}
+
+    label: label
+    btn_close: btn_close
+
+    title: self.title
+    text: self.label.text
+
+    font: self.label.font_name
+    title_font: self.btn_close.font_name
+
+    font_size: self.label.font_size
+    title_size: btn_close.font_size 
+    line_spacing: label.line_spacing
+
+    separator_color: self.separator_color
+    title_color: self.title_color
+    background_color: self.background_color
+    foreground_color: self.label.foreground_color
+
+    background: self.background
+
+    BoxLayout:
+        orientation: "vertical"
+
+        TextInput:
+            id: label
+            text: root.text
+            size_hint: 1, 0.82
+
+            foreground_color: root.foreground_color
+            background_color: root.background_color
+            
+            background_normal: root.background
+            background_active: root.background
+
+            font_name: root.font
+            font_size: root.font_size
+            line_spacing: root.line_spacing
+            
+            multiline: True
+            readonly: True
+
+        Button:
+            id: btn_close
+            text: "Close"
+            size_hint: 1, 0.18
+            on_release: root.dismiss()
+
+            font_name: root.title_font
+            font_size: root.title_size

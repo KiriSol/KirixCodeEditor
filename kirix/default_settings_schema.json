@@ -1,0 +1,253 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+
+	"type": "object",
+
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"RESERVED_PATHS": {
+			"type": "object",
+			"patternProperties": {
+				"^.*$": {
+					"type": "object",
+					"properties": {
+						"path": {
+							"type": "string"
+						},
+						"readonly": {
+							"type": "boolean"
+						}
+					},
+					"required": ["path", "readonly"],
+					"additionalProperties": false
+				}
+			},
+			"required": ["HOME", "settings", "default_settings", "help", "welcome"]
+		},
+		"user_aliases": {
+			"type": "object",
+			"patternProperties": {
+				"^.*$": {
+					"type": "string"
+				}
+			}
+		},
+		"plugins": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"search_paths": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"report_successful_download": {
+			"type": "boolean"
+		},
+		"UI": {
+			"type": "object",
+			"properties": {
+				"Editor": {
+					"type": "object",
+					"properties": {
+						"font": {
+							"type": "string"
+						},
+						"font_size": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 60
+						},
+						"line_spacing": {
+							"type": "number",
+							"minimum": 0,
+							"maximum": 30
+						},
+						"tab_size": {
+							"type": "number",
+							"minimum": 1
+						}
+					},
+					"required": ["font", "font_size", "line_spacing", "tab_size"],
+					"additionalProperties": false
+				},
+				"PushMessage": {
+					"type": "object",
+					"properties": {
+						"font": {
+							"type": "string"
+						},
+						"font_size": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 30
+						},
+						"title_font_size": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 30
+						},
+						"line_spacing": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 30
+						}
+					},
+					"required": ["font", "font_size", "title_font_size", "line_spacing"],
+					"additionalProperties": false
+				},
+				"PathInput": {
+					"type": "object",
+					"properties": {
+						"font": {
+							"type": "string"
+						},
+						"font_size": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 30
+						}
+					},
+					"required": ["font", "font_size"],
+					"additionalProperties": false
+				},
+				"Buttons": {
+					"type": "object",
+					"properties": {
+						"font": {
+							"type": "string"
+						},
+						"font_size": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 30
+						}
+					},
+					"required": ["font", "font_size"],
+					"additionalProperties": false
+				}
+			},
+			"required": ["Editor", "PushMessage", "PathInput", "Buttons"]
+		},
+		"Themes": {
+			"type": "object",
+			"patternProperties": {
+				"^.*$": {
+					"type": "object",
+					"patternProperties": {
+						"^(background|foreground|cursor|selection)$": {
+							"type": ["string", "array"],
+							"if": { "type": "array" },
+							"then": {
+								"maxItems": 4,
+								"minItems": 3,
+								"items": {
+									"type": "number",
+									"minimum": 0,
+									"maximum": 1
+								}
+							},
+							"else": {
+								"pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"
+							}
+						},
+						"Buttons": {
+							"type": "object",
+							"patternProperties": {
+								"^(background|text_color)$": {
+									"type": ["string", "array"],
+									"if": { "type": "array" },
+									"then": {
+										"maxItems": 4,
+										"minItems": 3,
+										"items": {
+											"type": "number",
+											"minimum": 0,
+											"maximum": 1
+										}
+									},
+									"else": {
+										"pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"
+									}
+								},
+								"^(background_normal|background_down)$": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"background",
+								"text_color",
+								"background_normal",
+								"background_down"
+							],
+							"additionalProperties": false
+						},
+						"PushMessage": {
+							"type": "object",
+							"patternProperties": {
+								"^(error|warning|info)$": {
+									"type": "object",
+									"patternProperties": {
+										"^(background|title|separator|foreground)$": {
+											"type": ["string", "array"],
+											"if": { "type": "array" },
+											"then": {
+												"maxItems": 4,
+												"minItems": 3,
+												"items": {
+													"type": "number",
+													"minimum": 0,
+													"maximum": 1
+												}
+											},
+											"else": {
+												"pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"
+											}
+										}
+									},
+									"required": [
+										"background",
+										"title",
+										"separator",
+										"foreground"
+									],
+									"additionalProperties": false
+								}
+							},
+							"required": ["error", "warning", "info"],
+							"additionalProperties": false
+						}
+					},
+					"required": [
+						"background",
+						"foreground",
+						"cursor",
+						"selection",
+						"Buttons",
+						"PushMessage"
+					],
+					"additionalProperties": false
+				}
+			},
+			"required": ["Default"]
+		},
+		"theme": {
+			"type": "string"
+		}
+	},
+	"required": [
+		"RESERVED_PATHS",
+		"plugins",
+		"search_paths",
+		"report_successful_download",
+		"UI",
+		"Themes",
+		"theme"
+	],
+	"additionalProperties": false
+}

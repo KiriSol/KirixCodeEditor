@@ -1,0 +1,199 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+
+	"type": "object",
+
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"user_aliases": {
+			"type": "object",
+			"patternProperties": {
+				"^.*$": {
+					"type": "string"
+				}
+			}
+		},
+		"plugins": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"search_paths": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"report_successful_download": {
+			"type": "boolean"
+		},
+		"UI": {
+			"type": "object",
+			"properties": {
+				"Editor": {
+					"type": "object",
+					"properties": {
+						"font": {
+							"type": "string"
+						},
+						"font_size": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 60
+						},
+						"line_spacing": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 30
+						},
+						"tab_size": {
+							"type": "number",
+							"minimum": 1
+						}
+					},
+					"additionalProperties": false
+				},
+				"PushMessage": {
+					"type": "object",
+					"properties": {
+						"font": {
+							"type": "string"
+						},
+						"font_size": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 30
+						},
+						"title_font_size": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 30
+						},
+						"line_spacing": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 30
+						}
+					},
+					"additionalProperties": false
+				},
+				"PathInput": {
+					"type": "object",
+					"properties": {
+						"font": {
+							"type": "string"
+						},
+						"font_size": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 30
+						}
+					},
+					"additionalProperties": false
+				},
+				"Buttons": {
+					"type": "object",
+					"properties": {
+						"font": {
+							"type": "string"
+						},
+						"font_size": {
+							"type": "number",
+							"minimum": 1,
+							"maximum": 30
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"additionalProperties": false
+		},
+		"Themes": {
+			"type": "object",
+			"patternProperties": {
+				"^.*$": {
+					"type": "object",
+					"patternProperties": {
+						"^(background|foreground|cursor|selection)$": {
+							"type": ["string", "array"],
+							"if": { "type": "array" },
+							"then": {
+								"maxItems": 4,
+								"minItems": 3,
+								"items": {
+									"type": "number",
+									"minimum": 0,
+									"maximum": 1
+								}
+							},
+							"else": {
+								"pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"
+							}
+						},
+						"Buttons": {
+							"type": "object",
+							"patternProperties": {
+								"^(background|text_color)$": {
+									"type": ["string", "array"],
+									"if": { "type": "array" },
+									"then": {
+										"maxItems": 4,
+										"minItems": 3,
+										"items": {
+											"type": "number",
+											"minimum": 0,
+											"maximum": 1
+										}
+									},
+									"else": {
+										"pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"
+									}
+								},
+								"^(background_normal|background_down)$": {
+									"type": "string"
+								}
+							},
+							"additionalProperties": false
+						},
+						"PushMessage": {
+							"type": "object",
+							"patternProperties": {
+								"^(error|warning|info)$": {
+									"type": "object",
+									"patternProperties": {
+										"^(background|title|separator|foreground)$": {
+											"type": ["string", "array"],
+											"if": { "type": "array" },
+											"then": {
+												"maxItems": 4,
+												"minItems": 3,
+												"items": {
+													"type": "number",
+													"minimum": 0,
+													"maximum": 1
+												}
+											},
+											"else": {
+												"pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"
+											}
+										}
+									}
+								}
+							},
+							"additionalProperties": false
+						}
+					},
+					"additionalProperties": false
+				}
+			}
+		},
+		"theme": {
+			"type": "string"
+		}
+	},
+	"required": [],
+	"additionalProperties": false
+}
