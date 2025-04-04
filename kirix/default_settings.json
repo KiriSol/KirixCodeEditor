@@ -29,6 +29,7 @@
 	"search_paths": [
 		"/storage/emulated/Fonts",
 		"/data/data/org.kirapp.kirixcode/files/resources/fonts",
+		"./resources/fonts",
 		"C:\\Windows\\Fonts",
 		"C:\\Users\\rbhbk\\AppData\\Local\\Microsoft\\Windows\\Fonts"
 	],
@@ -37,23 +38,23 @@
 
 	"UI": {
 		"Editor": {
-			"font": "JetBrainsMonoNerdFontMono-Regular.ttf",
+			"font": "JetBrainsMonoNerdFont-Regular.ttf",
 			"font_size": 18,
 			"line_spacing": 0,
 			"tab_size": 4
 		},
 		"PushMessage": {
-			"font": "JetBrainsMonoNerdFontMono-Regular.ttf",
+			"font": "JetBrainsMonoNerdFont-Regular.ttf",
 			"font_size": 15,
 			"title_font_size": 13,
 			"line_spacing": 1
 		},
 		"PathInput": {
-			"font": "JetBrainsMonoNerdFontMono-Regular.ttf",
+			"font": "JetBrainsMonoNerdFont-Regular.ttf",
 			"font_size": 18
 		},
 		"Buttons": {
-			"font": "JetBrainsMonoNerdFontMono-Regular.ttf",
+			"font": "JetBrainsMonoNerdFont-Regular.ttf",
 			"font_size": 16
 		}
 	},

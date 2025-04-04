@@ -13,7 +13,7 @@ package.domain = org.kirapp
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas,ttf
+source.include_exts = py,png,jpg,kv,atlas,ttf,json,md
 
 # (list) List of inclusions using pattern matching
 #source.include_patterns = assets/*,images/*.png
@@ -47,7 +47,7 @@ requirements = python3,kivy,pygments,jsonschema
 presplash.filename = %(source.dir)s/resources/images/logo.png
 
 # (str) Icon of the application
-icon.filename = %(source.dir)s/resources/icons/logo.png
+icon.filename = %(source.dir)s/resources/images/logo.png
 
 # (list) Supported orientations
 # Valid options are: landscape, portrait, portrait-reverse or landscape-reverse

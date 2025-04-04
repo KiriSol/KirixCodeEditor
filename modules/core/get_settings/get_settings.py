@@ -119,12 +119,12 @@ class Settings(dict, metaclass=Singleton):
                 elif os.path.exists(default_settings["UI"][k]["font"]):
                     break
             else:  # Если не нашли ни одного шрифта
-                default_settings["UI"][k]["font"] = "Roboto"
                 Factory.PushMessage(
-                    f"Ошибка в настройках по умолчанию:\nПуть к шрифту {default_settings['UI'][k]['font']} не найден, используется шрифт по умолчанию.",
+                    f"Ошибка в настройках по умолчанию:\nПуть к шрифту {default_settings['UI'][k]['font']} не найден, используется шрифт по умолчанию.!!!",
                     type_message="error",
                     get_settings=False,
                 ).show_message()
+                default_settings["UI"][k]["font"] = "Roboto"
 
         if default_settings["theme"] not in default_settings["Themes"].keys():
             Factory.PushMessage(
@@ -187,13 +187,15 @@ class Settings(dict, metaclass=Singleton):
                     break
                 elif os.path.exists(settings["UI"][k]["font"]):
                     break
+                elif settings["UI"][k]["font"] == "Roboto":
+                    break
             else:  # Если не нашли ни одного шрифта
-                settings["UI"][k]["font"] = default_settings["UI"][k]["font"]
                 Factory.PushMessage(
                     f"Путь к шрифту {settings['UI'][k]['font']} не найден, используется шрифт по умолчанию.",
                     type_message="warning",
                     settings=self,
                 ).show_message()
+                settings["UI"][k]["font"] = default_settings["UI"][k]["font"]
                 return
 
         for k in settings["Themes"].keys():
