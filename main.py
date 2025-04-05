@@ -16,6 +16,9 @@ from modules.core.get_settings.get_settings import Settings
 Factory.register("PushMessage", PushMessage)
 
 
+__version__ = "0.1.0"
+
+
 class KirixCodeRoot(BoxLayout):
     code_input: CodeInputToFile
     path_input: PathInput

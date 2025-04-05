@@ -1,1 +1,3 @@
-PACKAGE_PATH = r"C:\Users\rbhbk\Dev\KivyApp\KirixCode"
+import os
+
+PACKAGE_PATH: str = os.path.dirname(os.path.abspath(__file__))
