@@ -2,7 +2,7 @@ from typing import Any
 
 import os
 import json
-from jsonschema import validate, ValidationError
+# from jsonschema import validate, ValidationError
 
 from kivy.factory import Factory
 
@@ -92,15 +92,15 @@ class Settings(dict, metaclass=Singleton):
             ).show_message()
             return
 
-        try:  # проверяем настройки по умолчанию
-            validate(default_settings, default_settings_schema)
-        except ValidationError as err:
-            Factory.PushMessage(
-                f"Настройки по умолчанию повреждены:\n{err}",
-                type_message="error",
-                get_settings=False,
-            ).show_message()
-            return
+        # try:  # проверяем настройки по умолчанию
+        #     validate(default_settings, default_settings_schema)
+        # except ValidationError as err:
+        #     Factory.PushMessage(
+        #         f"Настройки по умолчанию повреждены:\n{err}",
+        #         type_message="error",
+        #         get_settings=False,
+        #     ).show_message()
+        #     return
 
         default_settings["RESERVED_PATHS"]["HOME"]["path"] = PACKAGE_PATH
 
@@ -139,15 +139,15 @@ class Settings(dict, metaclass=Singleton):
         self.is_content = True
         self.update(default_settings)
 
-        try:  # проверяем пользовательские настройки
-            validate(user_settings, user_settings_schema)
-        except ValidationError as err:
-            Factory.PushMessage(
-                f"Вы ввели некорректные пользовательские настройки:\n{err}",
-                type_message="error",
-                settings=self,
-            ).show_message()
-            return
+        # try:  # проверяем пользовательские настройки
+        #     validate(user_settings, user_settings_schema)
+        # except ValidationError as err:
+        #     Factory.PushMessage(
+        #         f"Вы ввели некорректные пользовательские настройки:\n{err}",
+        #         type_message="error",
+        #         settings=self,
+        #     ).show_message()
+        #     return
 
         # Объединяем настройки
         settings: dict[str, Any] = merge_2_nested_dict(default_settings, user_settings)
