@@ -102,6 +102,8 @@ class Settings(dict, metaclass=Singleton):
             ).show_message()
             return
 
+        default_settings["RESERVED_PATHS"]["HOME"]["path"] = PACKAGE_PATH
+
         for k in default_settings["UI"].keys():
             for path in default_settings["search_paths"]:
                 if os.path.exists(path + "/" + default_settings["UI"][k]["font"]):
