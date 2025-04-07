@@ -1,16 +1,12 @@
 {
 	"$schema": "./user_settings_schema.json",
 
-	"user_aliases": {
-		"WORK": "C:\\Users\\rbhbk\\Documents\\"
-	},
+	"user_aliases": {},
 
 	"search_paths": [],
 
 	"UI": {
-		"Editor": {
-			"font_size": 16
-		},
+		"Editor": {},
 		"PushMessage": {},
 		"PathInput": {},
 		"Buttons": {}
