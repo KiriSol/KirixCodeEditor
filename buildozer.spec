@@ -22,22 +22,22 @@ source.include_exts = py,png,jpg,kv,atlas,ttf,json,md
 #source.exclude_exts = spec
 
 # (list) List of directory to exclude (let empty to not exclude anything)
-source.exclude_dirs = tests, bin, venv, docs
+# source.exclude_dirs = tests, bin, venv, docs
 
 # (list) List of exclusions using pattern matching
 # Do not prefix with './'
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-# version = 0.2
+version = 0.1.0
 
 # (str) Application versioning (method 2)
-version.regex = __version__ = ['"](.*)['"]
-version.filename = %(source.dir)s/main.py
+#version.regex = __version__ = ['"](.*)['"]
+#version.filename = %(source.dir)s/main.py
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,pygments,jsonschema
+requirements = python3,kivy,pygments,attrs,referencing,rpds,jsonschema
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
