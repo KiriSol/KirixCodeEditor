@@ -3,7 +3,7 @@
 
 	"RESERVED_PATHS": {
 		"HOME": {
-			"path": "C:\\Users\\rbhbk\\Dev\\KivyApp\\KirixCode",
+			"path": "$PACKAGE_PATH",
 			"readonly": false
 		},
 		"settings": {
