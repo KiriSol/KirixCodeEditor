@@ -39,23 +39,23 @@
 	"UI": {
 		"Editor": {
 			"font": "JetBrainsMonoNerdFont-Regular.ttf",
-			"font_size": 18,
+			"font_size": 26,
 			"line_spacing": 0,
 			"tab_size": 4
 		},
 		"PushMessage": {
 			"font": "JetBrainsMonoNerdFont-Regular.ttf",
-			"font_size": 15,
+			"font_size": 25,
 			"title_font_size": 13,
 			"line_spacing": 1
 		},
 		"PathInput": {
 			"font": "JetBrainsMonoNerdFont-Regular.ttf",
-			"font_size": 18
+			"font_size": 22
 		},
 		"Buttons": {
 			"font": "JetBrainsMonoNerdFont-Regular.ttf",
-			"font_size": 16
+			"font_size": 30
 		}
 	},
 

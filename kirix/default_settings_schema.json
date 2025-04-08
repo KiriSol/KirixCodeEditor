@@ -66,7 +66,7 @@
 						"line_spacing": {
 							"type": "number",
 							"minimum": 0,
-							"maximum": 30
+							"maximum": 60
 						},
 						"tab_size": {
 							"type": "number",
@@ -85,17 +85,17 @@
 						"font_size": {
 							"type": "number",
 							"minimum": 1,
-							"maximum": 30
+							"maximum": 60
 						},
 						"title_font_size": {
 							"type": "number",
 							"minimum": 1,
-							"maximum": 30
+							"maximum": 60
 						},
 						"line_spacing": {
 							"type": "number",
 							"minimum": 1,
-							"maximum": 30
+							"maximum": 60
 						}
 					},
 					"required": ["font", "font_size", "title_font_size", "line_spacing"],
@@ -110,7 +110,7 @@
 						"font_size": {
 							"type": "number",
 							"minimum": 1,
-							"maximum": 30
+							"maximum": 60
 						}
 					},
 					"required": ["font", "font_size"],
@@ -125,7 +125,7 @@
 						"font_size": {
 							"type": "number",
 							"minimum": 1,
-							"maximum": 30
+							"maximum": 60
 						}
 					},
 					"required": ["font", "font_size"],

@@ -16,7 +16,7 @@ class CodeInputToFile(CodeInputLineNumber):
 
         self.text = self.file.text
         self.lexer = self.file.lexer
-        self.readonly = self.file.readonly
+        # self.text_content.readonly = self.file.readonly
         self.set_cursor_line(1)
 
     def save(self) -> None:
